@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Downloader
+namespace Uploader
 {
     class Program
     {

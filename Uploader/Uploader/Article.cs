@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Downloader
+namespace Uploader
 {
     class Article
     {

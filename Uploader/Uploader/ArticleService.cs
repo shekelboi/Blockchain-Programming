@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Downloader
+namespace Uploader
 {
     static class ArticleService
     {

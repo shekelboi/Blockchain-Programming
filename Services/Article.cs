@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Uploader
 {
-    class Article
+    public class Article
     {
         string title;
         string summary;

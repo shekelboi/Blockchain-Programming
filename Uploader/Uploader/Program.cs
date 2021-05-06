@@ -3,8 +3,9 @@ using System.Net;
 using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
+using Blockchain_Programming.Services;
 
-namespace Uploader
+namespace Blockchain_Programming.Uploader
 {
     class Program
     {

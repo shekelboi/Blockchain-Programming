@@ -6,9 +6,9 @@ using System.Xml.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Uploader
+namespace Blockchain_Programming.Services
 {
-    static class ArticleService
+    public static class ArticleService
     {
         public static List<Article> DownloadArticlesFromTelex()
         {

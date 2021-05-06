@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uploader", "Uploader\Upload
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Downloader", "..\Downloader\Downloader.csproj", "{C67DE6D1-9004-457E-A465-F090DC2A2C7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "..\Services\Services.csproj", "{F5C049BE-2623-4FC9-88DA-D80B70AD410C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C67DE6D1-9004-457E-A465-F090DC2A2C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C67DE6D1-9004-457E-A465-F090DC2A2C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C67DE6D1-9004-457E-A465-F090DC2A2C7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5C049BE-2623-4FC9-88DA-D80B70AD410C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5C049BE-2623-4FC9-88DA-D80B70AD410C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5C049BE-2623-4FC9-88DA-D80B70AD410C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5C049BE-2623-4FC9-88DA-D80B70AD410C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

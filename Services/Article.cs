@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Uploader
+namespace Blockchain_Programming.Services
 {
     public class Article
     {

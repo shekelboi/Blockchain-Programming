@@ -13,6 +13,9 @@ namespace Blockchain_Programming.Uploader
         {
             List<Article> articles = ArticleService.DownloadArticlesFromTelex();
             List<string> jsonArticles = ArticleService.ArticlesToJson(articles);
+            Token token = ModexService.ObtainToken().Result;
+            Console.WriteLine($"Access token: {token.access_token}");
+            Console.WriteLine($"Refresh token: {token.refresh_token}");
         }
     }
 }

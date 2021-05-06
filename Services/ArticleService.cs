@@ -67,7 +67,13 @@ namespace Blockchain_Programming.Services
 
             foreach (var article in articles)
             {
-                jsonArticles.Add(JsonSerializer.Serialize(article));
+                Schema record = new Schema()
+                {
+                    ID = article.PublicationDate.Ticks.ToString(),
+                    Article = article
+                };
+
+                jsonArticles.Add(JsonSerializer.Serialize(record));
             }
 
             return jsonArticles;

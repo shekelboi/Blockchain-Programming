@@ -17,12 +17,17 @@ namespace Blockchain_Programming.Uploader
         {
             List<Article> articles = ArticleService.DownloadArticlesFromTelex();
             List<string> jsonArticles = ArticleService.ArticlesToJson(articles);
+
+            Console.WriteLine(jsonArticles[0]);
+
             ModexService modexService = ModexService.Create().Result;
             Console.WriteLine($"Access token: {modexService.Token.access_token}");
             Console.WriteLine($"Refresh token: {modexService.Token.refresh_token}");
             Console.WriteLine(modexService.Token.token_type);
 
-            EntityResponse entityResponse = modexService.CreateEntity(File.ReadAllText("schema.json"), "ENTER UNIQUE ID HERE").Result;
+            string schemaName = "JustAnExample";
+
+            EntityResponse entityResponse = modexService.CreateEntity(File.ReadAllText("schema.json"), schemaName).Result;
 
             if (entityResponse.message == null || entityResponse.message == "")
             {
@@ -32,6 +37,8 @@ namespace Blockchain_Programming.Uploader
             {
                 Console.WriteLine(entityResponse.message);
             }
+
+            modexService.UploadRecord(jsonArticles.First(), schemaName).Wait();
         }
     }
 }

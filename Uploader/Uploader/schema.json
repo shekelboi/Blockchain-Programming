@@ -1,0 +1,21 @@
+{
+  "$schema": "Name",
+  "$id": "Articles",
+  "title": "Articles from Telex",
+  "type": "object",
+  "required": "[ID]",
+  "properties": {
+	"ID": {
+		"type": "string",
+		"identity": 1
+	},
+    "Article": {
+      "type": "object",
+      "properties": {
+        "Title": "string",
+        "Summary": "string",
+        "PublicationDate": "string"
+      }
+    }
+  }
+}

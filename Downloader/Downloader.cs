@@ -19,6 +19,9 @@ namespace Blockchain_Programming.Downloader
                 Schema schema = ModexService.ViewRecord(entityContainer.SchemaName, item.recordId, token.access_token).Result;
 
                 Console.WriteLine(schema.Article.Title);
+                Console.WriteLine(schema.Article.Summary);
+                Console.WriteLine(schema.Article.PublicationDate);
+                Console.WriteLine();
             }
 
         }

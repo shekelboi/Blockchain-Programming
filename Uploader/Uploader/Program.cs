@@ -25,7 +25,7 @@ namespace Blockchain_Programming.Uploader
             Console.WriteLine($"Refresh token: {modexService.Token.refresh_token}");
             Console.WriteLine(modexService.Token.token_type);
 
-            string schemaName = "JustAnExample2";
+            string schemaName = "JustAnExamle";
 
             EntityResponse entityResponse = modexService.CreateEntity(File.ReadAllText("schema.json"), schemaName).Result;
 
@@ -48,6 +48,10 @@ namespace Blockchain_Programming.Uploader
             {
                 Console.WriteLine(entityResponse.message);
             }
+
+            Schema record = modexService.ViewRecord(schemaName, entityResponse.recordId).Result;
+
+            Console.WriteLine(record.Article.Title);
         }
     }
 }

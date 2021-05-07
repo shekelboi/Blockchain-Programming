@@ -24,7 +24,12 @@ namespace Blockchain_Programming.Services
                 string title = item.Element("title").Value;
                 string description = item.Element("description").Value;
                 string pubDate = item.Element("pubDate").Value;
-                articles.Add(new Article(title, description, TelexDateTimeConverter(pubDate)));
+                articles.Add(new Article
+                {
+                    Title = title,
+                    Summary = description,
+                    PublicationDate = TelexDateTimeConverter(pubDate)
+                });
             }
 
             return articles;

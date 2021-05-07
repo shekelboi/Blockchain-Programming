@@ -63,5 +63,17 @@ namespace Blockchain_Programming.Services
             var rawMessage = reader.ReadToEnd();
             return JsonSerializer.Deserialize<EntityResponse>(rawMessage);
         }
+
+        public async Task<Schema> ViewRecord(string schemaName, string transactionId)
+        {
+            var httpClient = new HttpClient();
+            var request = new HttpRequestMessage(new HttpMethod("GET"), "https://bcdb.modex.tech/data-node01-api/data/" + schemaName + "/" + transactionId);
+            request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {token.access_token}");
+            var response = await httpClient.SendAsync(request);
+            var reader = new StreamReader(await response.Content.ReadAsStreamAsync());
+            reader.BaseStream.Seek(0, SeekOrigin.Begin);
+            var rawMessage = reader.ReadToEnd();
+            return JsonSerializer.Deserialize<Schema>(rawMessage);
+        }
     }
 }

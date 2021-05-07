@@ -17,12 +17,5 @@ namespace Blockchain_Programming.Services
         public string Summary { get => summary; set => summary = value; }
         public DateTime PublicationDate { get => publicationDate; set => publicationDate = value; }
 
-        public Article(string title, string summary, DateTime publicationDate)
-        {
-            this.Title = title;
-            this.Summary = summary;
-            this.PublicationDate = publicationDate;
-        }
-
     }
 }

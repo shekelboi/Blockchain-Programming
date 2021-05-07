@@ -46,12 +46,11 @@ namespace Blockchain_Programming.Services
             var reader = new StreamReader(await response.Content.ReadAsStreamAsync());
             reader.BaseStream.Seek(0, SeekOrigin.Begin);
             var rawMessage = reader.ReadToEnd();
-            Console.WriteLine(rawMessage);
             EntityResponse entityResponse = JsonSerializer.Deserialize<EntityResponse>(rawMessage);
             return entityResponse;
         }
 
-        public async Task UploadRecord(string json, string name)
+        public async Task<EntityResponse> UploadRecord(string json, string name)
         {
             var httpClient = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Post, "https://bcdb.modex.tech/data-node01-api/data/" + name);
@@ -62,7 +61,7 @@ namespace Blockchain_Programming.Services
             var reader = new StreamReader(await response.Content.ReadAsStreamAsync());
             reader.BaseStream.Seek(0, SeekOrigin.Begin);
             var rawMessage = reader.ReadToEnd();
-            Console.WriteLine(rawMessage);
+            return JsonSerializer.Deserialize<EntityResponse>(rawMessage);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Blockchain_Programming.Downloader
 
             foreach (var item in entityContainer.EntityResponses)
             {
-                Schema schema = ModexService.ViewRecord(entityContainer.SchemaName, item.recordId, token.access_token).Result;
+                Schema schema = ModexService.ViewRecord(entityContainer.SchemaName, item.recordId, token).Result;
 
                 Console.WriteLine(schema.Article.Title);
                 Console.WriteLine(schema.Article.Summary);

@@ -20,25 +20,29 @@ namespace Blockchain_Programming.Uploader
             File.WriteAllText("token.dat", JsonSerializer.Serialize(token));
             Console.WriteLine("Token obtained!");
 
-            List<EntityResponse> entityResponses = UploadData(jsonArticles, "thisisatest34", token);
-            File.WriteAllText("entities.dat", JsonSerializer.Serialize(entityResponses));
+            EntityContainer entityContainer = UploadData(jsonArticles, "ashui", token);
+            File.WriteAllText("entities.dat", JsonSerializer.Serialize(entityContainer));
         }
 
-        static List<EntityResponse> UploadData(List<string> jsonArticles, string schemaName, Token token)
+        static EntityContainer UploadData(List<string> jsonArticles, string schemaName, Token token)
         {
             EntityResponse entityResponse = ModexService.CreateEntity(File.ReadAllText("schema.json"), schemaName, token.access_token).Result;
             Console.WriteLine("Schema created!");
 
-            List <EntityResponse> entityResponses = new List<EntityResponse>();
+            EntityContainer entityContainer = new EntityContainer()
+            {
+                SchemaName = schemaName,
+                EntityResponses = new List<EntityResponse>()
+            };
 
             foreach (var article in jsonArticles)
             {
                 entityResponse = ModexService.UploadRecord(article, schemaName, token.access_token).Result;
-                entityResponses.Add(entityResponse);
+                entityContainer.EntityResponses.Add(entityResponse);
                 Console.WriteLine("Record added!");
             }
 
-            return entityResponses;
+            return entityContainer;
         }
     }
 }

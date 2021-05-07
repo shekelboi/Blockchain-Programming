@@ -6,4 +6,8 @@
     <RootNamespace>Blockchain_Programming.Downloader</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Services\Services.csproj" />
+  </ItemGroup>
+
 </Project>

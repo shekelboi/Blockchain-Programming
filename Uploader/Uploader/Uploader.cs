@@ -20,8 +20,14 @@ namespace Blockchain_Programming.Uploader
             File.WriteAllText("token.dat", JsonSerializer.Serialize(token));
             Console.WriteLine("Token obtained!");
 
-            EntityContainer entityContainer = UploadData(jsonArticles, "randomtext", token);
+            Console.Write("Enter a name for the schema: ");
+            string schemaName = Console.ReadLine();
+
+            EntityContainer entityContainer = UploadData(jsonArticles, schemaName, token);
             File.WriteAllText("entities.dat", JsonSerializer.Serialize(entityContainer));
+
+            Console.WriteLine("Process finished");
+            Console.ReadKey();
         }
 
         static EntityContainer UploadData(List<string> jsonArticles, string schemaName, Token token)

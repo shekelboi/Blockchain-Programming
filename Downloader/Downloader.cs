@@ -24,6 +24,8 @@ namespace Blockchain_Programming.Downloader
                 Console.WriteLine();
             }
 
+            Console.WriteLine("Process finished");
+            Console.ReadKey();
         }
     }
 }

@@ -9,18 +9,8 @@ using System.Threading.Tasks;
 
 namespace Blockchain_Programming.Services
 {
-    public sealed class ModexService
+    public static class ModexService
     {
-        private Token token;
-        public Token Token { get => token; set => token = value; }
-
-        public static async Task<ModexService> Create()
-        {
-            ModexService modex = new ModexService();
-            modex.Token = await ObtainToken();
-            return modex;
-        }
-
         public static async Task<Token> ObtainToken()
         {
             HttpClient httpClient = new HttpClient();
@@ -35,11 +25,11 @@ namespace Blockchain_Programming.Services
             return JsonSerializer.Deserialize<Token>(rawMessage);
         }
 
-        public async Task<EntityResponse> CreateEntity(string json, string name)
+        public static async Task<EntityResponse> CreateEntity(string json, string name, string access_token)
         {
             var httpClient = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Post, "https://bcdb.modex.tech/data-node01-api/data/catalog/_JsonSchema/" + name);
-            request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {token.access_token}");
+            request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {access_token}");
             request.Content = new StringContent(json);
             request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
             var response = await httpClient.SendAsync(request);
@@ -50,11 +40,11 @@ namespace Blockchain_Programming.Services
             return entityResponse;
         }
 
-        public async Task<EntityResponse> UploadRecord(string json, string name)
+        public static async Task<EntityResponse> UploadRecord(string json, string name, string access_token)
         {
             var httpClient = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Post, "https://bcdb.modex.tech/data-node01-api/data/" + name);
-            request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {token.access_token}");
+            request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {access_token}");
             request.Content = new StringContent(json);
             request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
             var response = await httpClient.SendAsync(request);
@@ -64,11 +54,11 @@ namespace Blockchain_Programming.Services
             return JsonSerializer.Deserialize<EntityResponse>(rawMessage);
         }
 
-        public async Task<Schema> ViewRecord(string schemaName, string transactionId)
+        public static async Task<Schema> ViewRecord(string schemaName, string transactionId, string access_token)
         {
             var httpClient = new HttpClient();
             var request = new HttpRequestMessage(new HttpMethod("GET"), "https://bcdb.modex.tech/data-node01-api/data/" + schemaName + "/" + transactionId);
-            request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {token.access_token}");
+            request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {access_token}");
             var response = await httpClient.SendAsync(request);
             var reader = new StreamReader(await response.Content.ReadAsStreamAsync());
             reader.BaseStream.Seek(0, SeekOrigin.Begin);

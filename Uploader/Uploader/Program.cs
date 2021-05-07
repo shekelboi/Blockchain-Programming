@@ -20,25 +20,13 @@ namespace Blockchain_Programming.Uploader
 
             Console.WriteLine(jsonArticles[0]);
 
-            ModexService modexService = ModexService.Create().Result;
-            Console.WriteLine($"Access token: {modexService.Token.access_token}");
-            Console.WriteLine($"Refresh token: {modexService.Token.refresh_token}");
-            Console.WriteLine(modexService.Token.token_type);
+            Token token = ModexService.ObtainToken().Result;
+            Console.WriteLine($"Access token: {token.access_token}");
+            Console.WriteLine($"Refresh token: {token.refresh_token}");
 
-            string schemaName = "JustAnExamle";
+            string schemaName = "JustAnExamleAgain";
 
-            EntityResponse entityResponse = modexService.CreateEntity(File.ReadAllText("schema.json"), schemaName).Result;
-
-            if (entityResponse.message == null || entityResponse.message == "")
-            {
-                Console.WriteLine(entityResponse.transactionId);
-            }
-            else
-            {
-                Console.WriteLine(entityResponse.message);
-            }
-
-            entityResponse = modexService.UploadRecord(jsonArticles.First(), schemaName).Result;
+            EntityResponse entityResponse = ModexService.CreateEntity(File.ReadAllText("schema.json"), schemaName, token.access_token).Result;
 
             if (entityResponse.message == null || entityResponse.message == "")
             {
@@ -49,7 +37,18 @@ namespace Blockchain_Programming.Uploader
                 Console.WriteLine(entityResponse.message);
             }
 
-            Schema record = modexService.ViewRecord(schemaName, entityResponse.recordId).Result;
+            entityResponse = ModexService.UploadRecord(jsonArticles.First(), schemaName, token.access_token).Result;
+
+            if (entityResponse.message == null || entityResponse.message == "")
+            {
+                Console.WriteLine(entityResponse.transactionId);
+            }
+            else
+            {
+                Console.WriteLine(entityResponse.message);
+            }
+
+            Schema record = ModexService.ViewRecord(schemaName, entityResponse.recordId, token.access_token).Result;
 
             Console.WriteLine(record.Article.Title);
         }
